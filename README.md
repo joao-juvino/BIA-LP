@@ -56,3 +56,17 @@ Conecte o domínio próprio após a validação do conteúdo. Nenhum segredo de 
 ## Observação sobre fidelidade visual
 
 A referência é um conjunto de screenshots de Figma, com textos marcados e imagens parcialmente cobertas pela interface. Tipografia, cores, tamanhos e espaçamentos foram reproduzidos por aproximação visual. Para equivalência pixel a pixel, precisam ser fornecidos os arquivos-fonte originais (fontes, logos, imagens) e valores de design.
+
+## Prévia pelo GitHub Pages
+
+O arquivo `.github/workflows/deploy-pages.yml` gera e publica a LP no GitHub Pages em
+`https://joao-juvino.github.io/BIA-LP/`.
+
+Se o deploy falhar por ausência de GitHub Pages:
+1. Acesse **Settings → Pages** no repositório.
+2. Escolha **GitHub Actions** como fonte de publicação.
+3. Verifique se o plano GitHub permite Pages para um repositório **privado** (não altere a visibilidade sem aprovação).
+4. Execute novamente o workflow **Publish BIA LP to GitHub Pages** em **Actions**.
+
+A prévia atual acompanha a branch de desenvolvimento `feat/landing-page-astro`; quando
+o projeto estiver aprovado, atualize o workflow para publicar apenas a `main`.

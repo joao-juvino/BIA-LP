@@ -8,6 +8,9 @@ const hrefFor = (url: string, fallback = '#contato') => url || fallback;
 const external = (url: string) => url.startsWith('http');
 const linkProps = (url: string) => external(url) ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 const metaDescription = site.description;
+// GitHub Pages serves project sites under /BIA-LP/, not at domain root.
+const baseUrl = import.meta.env.BASE_URL;
+const asset = (path: string) => `${baseUrl}${path.replace(/^\\/+/, '')}`;
 ---
 
 <!doctype html>
@@ -21,8 +24,8 @@ const metaDescription = site.description;
     <meta property="og:title" content="Instituto BIA | A arte da Paraíba tem endereço" />
     <meta property="og:description" content={metaDescription} />
     <meta property="og:locale" content="pt_BR" />
-    <meta property="og:image" content="/gallery-placeholder.svg" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:image" content={new URL(asset("gallery-placeholder.svg"), "https://joao-juvino.github.io").href} />
+    <link rel="icon" href={asset("favicon.svg")} type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet" />
@@ -34,7 +37,7 @@ const metaDescription = site.description;
     <header class="site-header" id="inicio">
       <div class="container header-inner">
         <a href="#inicio" class="brand" aria-label="Instituto BIA Beltrão — início">
-          <img src="/brand.svg" alt="BIA Beltrão" width="112" height="50" />
+          <img src={asset("brand.svg")} alt="BIA Beltrão" width="112" height="50" />
         </a>
         <nav class="desktop-nav" aria-label="Menu principal">
           <a href="#ingressos">Ingressos</a>
@@ -79,7 +82,7 @@ const metaDescription = site.description;
               width="700"
               height="570"
               fetchpriority="high"
-              onerror={`this.onerror=null;this.src='${site.heroImage.fallback}'`}
+              onerror={`this.onerror=null;this.src=${JSON.stringify(asset(site.heroImage.fallback))}`}
             />
             <span class="accent-block accent-coral" aria-hidden="true"></span>
           </div>
@@ -223,7 +226,7 @@ const metaDescription = site.description;
 
     <footer class="site-footer dark-section">
       <div class="container footer-inner">
-        <a href="#inicio" class="footer-brand" aria-label="Voltar ao início"><img src="/brand.svg" alt="BIA Beltrão" width="112" height="50" loading="lazy" /></a>
+        <a href="#inicio" class="footer-brand" aria-label="Voltar ao início"><img src={asset("brand.svg")} alt="BIA Beltrão" width="112" height="50" loading="lazy" /></a>
         <div class="footer-contact">
           <p class="eyebrow muted">{site.fullName}</p>
           <p><span class="placeholder-label">{site.visit.address}</span></p>
