@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 236 105" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">BIA Beltrão — Instituto de Artes da Paraíba</title>
+  <g transform="translate(2 9)">
+    <path d="M0 0h16v26H0z" fill="#CE7890"/>
+    <path d="M18 0h15L18 25z" fill="#F2B45D"/>
+    <path d="M35 0h10v25H35z" fill="#3D686F"/>
+    <path d="M0 28h17v25H0z" fill="#3D686F"/>
+    <path d="M19 28h14v25H19z" fill="#DF4839"/>
+    <path d="M35 28h10v25H35z" fill="#D17D91"/>
+    <path d="M0 55h17v9H0z" fill="#E7AF5C"/>
+    <path d="M19 55h26v9H19z" fill="#3D686F"/>
+  </g>
+  <text x="47" y="58" fill="#FAF5EC" font-family="Georgia,serif" font-size="62" letter-spacing="-6">BIA</text>
+  <text x="49" y="78" fill="#FAF5EC" font-family="Arial,sans-serif" font-size="13" letter-spacing="7">BELTRÃO</text>
+  <text x="49" y="92" fill="#D4D9D7" font-family="Arial,sans-serif" font-size="6.2" letter-spacing="3">INSTITUTO DE ARTES</text>
+</svg>

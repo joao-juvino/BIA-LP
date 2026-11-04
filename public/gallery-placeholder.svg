@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 830" role="img" aria-labelledby="gallery-title">
+  <title id="gallery-title">Ilustração de uma galeria de arte com obras abstratas</title>
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#E9DED0"/><stop offset="1" stop-color="#A79A89"/></linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#B07854"/><stop offset="1" stop-color="#5F3F34"/></linearGradient>
+    <linearGradient id="dress" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#BC9A77"/><stop offset="1" stop-color="#7B5D49"/></linearGradient>
+  </defs>
+  <path fill="#D4C4B3" d="M0 0h1200v830H0z"/>
+  <path fill="url(#wall)" d="M0 0h760v550H0z"/>
+  <path fill="#EDE6DA" d="M760 0h440v580H760z"/>
+  <path fill="#6D5548" d="M0 0h1200v53H0z"/>
+  <path fill="#8E6C53" d="M0 32h1200v14H0z"/>
+  <path d="M0 550 1200 580 1200 830H0z" fill="url(#floor)"/>
+  <g stroke="#D7B087" stroke-width="3" opacity=".55">
+    <path d="M0 620 1200 645M0 715 1200 728M170 550 80 830M430 565 420 830M730 578 770 830M990 587 1130 830"/>
+  </g>
+  <rect x="48" y="105" width="390" height="355" fill="#684B3D" opacity=".3"/>
+  <rect x="40" y="96" width="390" height="355" fill="#E4A96D" stroke="#3D3934" stroke-width="6"/>
+  <rect x="61" y="116" width="347" height="312" fill="#B65A3C"/>
+  <path d="M61 116h190v168H61z" fill="#D8A153"/>
+  <path d="M251 116h157v145H251z" fill="#254F66"/>
+  <path d="M250 284h158v144H250z" fill="#245C67"/>
+  <path d="M61 285h190v143H61z" fill="#E77045"/>
+  <circle cx="255" cy="162" r="108" fill="#E5AF37"/>
+  <path d="M265 180a115 115 0 0 0 105-115v195H265z" fill="#255D74"/>
+  <path d="M61 390c96-90 177-95 250 38H61z" fill="#345F50"/>
+  <rect x="655" y="168" width="222" height="256" fill="#D9A578" stroke="#5B4E41" stroke-width="5"/>
+  <rect x="671" y="183" width="191" height="224" fill="#28627C"/>
+  <path d="M671 183h97v120h-97z" fill="#E0A13D"/>
+  <path d="M769 183h93v124h-93z" fill="#CB5C40"/>
+  <path d="M671 310c80-100 144-78 191 53v44H671z" fill="#A7A46A"/>
+  <rect x="1020" y="135" width="136" height="327" fill="#4D4136" stroke="#D0A879" stroke-width="12"/>
+  <rect x="1036" y="151" width="103" height="289" fill="#1A566B"/>
+  <path d="M1036 218h103v110h-103z" fill="#C96549"/>
+  <ellipse cx="585" cy="696" rx="100" ry="22" fill="#392D28" opacity=".25"/>
+  <path d="M578 368c-50-8-62 46-50 86 7 21 19 35 24 53l-33 173 55 6 25-133 21 133 56-5-32-174c25-48 18-103-18-126z" fill="url(#dress)"/>
+  <path d="M562 373c-15-37-6-74 24-78 39-5 58 30 46 64-4 13-14 23-27 28z" fill="#302823"/>
+  <ellipse cx="596" cy="375" rx="27" ry="35" fill="#9C704F"/>
+  <path d="M564 375c-24 17-19 48-12 66M623 386c27 26 28 50 14 70" stroke="#8C604B" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <path d="m526 680-5 20 65 3 2-16M617 687l7 19 65-4-5-22" fill="#3E3029"/>
+</svg>
