@@ -1,0 +1,240 @@
+---
+import { site } from '../data/site';
+import '../styles/global.css';
+
+const ticketHref = site.links.tickets || '#contato';
+const courseHref = site.links.courses || '#contato';
+const hrefFor = (url: string, fallback = '#contato') => url || fallback;
+const external = (url: string) => url.startsWith('http');
+const linkProps = (url: string) => external(url) ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+const metaDescription = site.description;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#08232e" />
+    <meta name="description" content={metaDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Instituto BIA | A arte da Paraíba tem endereço" />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:image" content="/gallery-placeholder.svg" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet" />
+    <title>Instituto BIA Beltrão | Arte, exposições e cursos na Paraíba</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="site-header" id="inicio">
+      <div class="container header-inner">
+        <a href="#inicio" class="brand" aria-label="Instituto BIA Beltrão — início">
+          <img src="/brand.svg" alt="BIA Beltrão" width="112" height="50" />
+        </a>
+        <nav class="desktop-nav" aria-label="Menu principal">
+          <a href="#ingressos">Ingressos</a>
+          <a href="#cursos">Cursos</a>
+          <a href="#instituto">O instituto</a>
+          <a href="#duvidas">Dúvidas</a>
+        </nav>
+        <a class="btn btn-coral header-cta" href={ticketHref} {...linkProps(ticketHref)}>Comprar ingresso</a>
+        <details class="mobile-menu">
+          <summary aria-label="Abrir menu de navegação"><span></span><span></span><span></span></summary>
+          <nav aria-label="Menu para dispositivos móveis">
+            <a href="#ingressos">Ingressos</a>
+            <a href="#cursos">Cursos</a>
+            <a href="#instituto">O instituto</a>
+            <a href="#duvidas">Dúvidas</a>
+            <a href={ticketHref} {...linkProps(ticketHref)}>Comprar ingresso</a>
+          </nav>
+        </details>
+      </div>
+      <div class="color-track" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </header>
+
+    <main id="conteudo">
+      <section class="hero dark-section" aria-labelledby="hero-title">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow muted">Instituto de Artes · Paraíba</p>
+            <h1 id="hero-title" class="display-heading">A arte da Paraíba<br />tem endereço.<br /><em>Venha conhecer.</em></h1>
+            <p class="hero-description">O Instituto BIA reúne obras, curadoria, exposições e cursos de arte. Compre seu ingresso em poucos toques ou escolha o curso que vai mudar o seu olhar.</p>
+            <div class="action-row">
+              <a href={ticketHref} class="btn btn-coral" {...linkProps(ticketHref)}>Comprar ingresso</a>
+              <a href="#cursos" class="btn btn-outline-light">Ver cursos</a>
+            </div>
+            <p class="fine-print">Pagamento e ingresso realizados na plataforma de bilheteria indicada.</p>
+          </div>
+          <div class="hero-art">
+            <span class="accent-block accent-gold" aria-hidden="true"></span>
+            <img
+              src={site.heroImage.src}
+              alt={site.heroImage.alt}
+              class="hero-photo"
+              width="700"
+              height="570"
+              fetchpriority="high"
+              onerror={\`this.onerror=null;this.src='\${site.heroImage.fallback}'\`}
+            />
+            <span class="accent-block accent-coral" aria-hidden="true"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="visit-strip" aria-label="Informações da visita">
+        <div class="container visit-strip-grid">
+          <div class="visit-detail"><span class="eyebrow coral">Quando</span><p>{site.visit.hours}</p></div>
+          <div class="visit-detail"><span class="eyebrow coral">Onde</span><p>{site.visit.address}</p></div>
+          <div class="visit-detail"><span class="eyebrow coral">Quanto</span><p>Ingressos a partir de {site.visit.startingPrice}</p></div>
+          <div class="visit-detail"><span class="eyebrow coral">Como chegar</span><p><a href={hrefFor(site.links.maps)} {...linkProps(site.links.maps)}>{site.links.maps ? 'Ver no mapa ↗' : 'Informações de localização'}</a></p></div>
+        </div>
+      </section>
+
+      <section class="section tickets-section" id="ingressos" aria-labelledby="tickets-title">
+        <div class="container">
+          <p class="eyebrow coral">Ingressos</p>
+          <h2 id="tickets-title" class="display-heading">Garanta o seu ingresso</h2>
+          <p class="section-intro">Escolha o dia e a quantidade e compre em poucos toques. Seu ingresso será disponibilizado conforme as instruções da plataforma de venda.</p>
+          <div class="ticket-grid">
+            {site.ticketTypes.map((ticket) => (
+              <article class={\`ticket-card stripe-\${ticket.color}\`}>
+                <h3>{ticket.name}</h3>
+                <p>{ticket.description}</p>
+                {ticket.note && <span class="placeholder-label">{ticket.note}</span>}
+                {ticket.name === 'Inteira' && <span class="ticket-marker" aria-hidden="true"></span>}
+              </article>
+            ))}
+          </div>
+          <div class="ticket-bottom">
+            <a class="btn btn-coral" href={ticketHref} {...linkProps(ticketHref)}>Comprar ingresso</a>
+            <span class="small-note">Restam poucas vagas para este dia. <strong>[confirmar disponibilidade]</strong></span>
+            <span class="small-note subdued">Este site não processa pagamentos.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section experiences-section" aria-labelledby="experiences-title">
+        <div class="container">
+          <p class="eyebrow coral">A visita</p>
+          <h2 id="experiences-title" class="display-heading experience-heading">Uma visita, quatro jeitos<br />de entrar na arte</h2>
+          <div class="experience-grid">
+            {site.experiences.map((experience) => (
+              <article class="experience-card">
+                <div class="card-kicker">
+                  <span class={\`shape \${experience.shape} bg-\${experience.color}\`} aria-hidden="true"></span>
+                  <span class="eyebrow">{experience.name}</span>
+                </div>
+                <h3>{experience.title}</h3>
+                <p>{experience.description}</p>
+                {'note' in experience && experience.note && <span class="placeholder-label">{experience.note}</span>}
+              </article>
+            ))}
+          </div>
+          <a href={ticketHref} class="btn btn-coral" {...linkProps(ticketHref)}>Escolher meu ingresso</a>
+        </div>
+      </section>
+
+      <section class="section courses-section" id="cursos" aria-labelledby="courses-title">
+        <div class="container">
+          <p class="eyebrow coral">Cursos</p>
+          <div class="courses-intro">
+            <h2 id="courses-title" class="display-heading">Aprenda arte com<br />quem vive de arte</h2>
+            <p>Cursos do Instituto BIA para quem quer começar, retomar ou aprofundar o olhar. Veja as turmas abertas e garanta a sua vaga.</p>
+          </div>
+          <div class="course-grid">
+            {site.courses.map((course) => {
+              const url = course.url || courseHref;
+              return (
+                <article class="course-card">
+                  <span class={\`status status-\${course.statusColor}\`}>{course.status}</span>
+                  <h3><span class="placeholder-label">{course.name}</span></h3>
+                  <p class="course-description"><span class="placeholder-label">{course.description}</span></p>
+                  <p class="course-details"><span class="placeholder-label">{course.details}</span></p>
+                  <p class="course-price"><span class="placeholder-label">{course.price}</span></p>
+                  <a href={url} class="btn btn-coral btn-full" {...linkProps(url)}>Quero me inscrever</a>
+                </article>
+              );
+            })}
+          </div>
+          <div class="courses-notice">No momento não há informações de inscrições confirmadas? Entre em contato com o Instituto BIA para saber sobre as próximas turmas.</div>
+        </div>
+      </section>
+
+      <section class="section about-section dark-section" id="instituto" aria-labelledby="about-title">
+        <div class="container about-grid">
+          <div class="about-copy">
+            <p class="eyebrow muted">O instituto</p>
+            <h2 id="about-title" class="display-heading">Uma casa para<br />a arte da Paraíba</h2>
+            <p>O Instituto BIA nasceu em <span class="placeholder-label">[ano]</span>, em <span class="placeholder-label">[cidade / lugar ou fundador]</span>, com uma ideia simples: a arte paraibana merece um espaço à altura da sua força. Começou com <span class="placeholder-label">[primeira marca: uma exposição, uma coleção, uma turma]</span>.</p>
+            <p>Hoje, guarda e mostra <span class="placeholder-label">[n]</span> obras, com curadoria que escolhe o que contar e como contar. Reúne exposições, cursos e encontros para quem quer ver, aprender ou fazer arte.</p>
+            <p>Cada visita é um jeito de manter essa história viva. A próxima página pode ser a sua.</p>
+            <a href={ticketHref} class="btn btn-coral" {...linkProps(ticketHref)}>Comprar ingresso</a>
+          </div>
+          <ol class="timeline" aria-label="Linha do tempo do instituto">
+            {site.history.map((event) => (
+              <li class="timeline-item">
+                <span class={\`timeline-dot bg-\${event.color}\`} aria-hidden="true"></span>
+                <div><span class="timeline-year placeholder-label">{event.year}</span><br /><span class="timeline-label placeholder-label">{event.label}</span></div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <div class="reassurance-strip" id="contato">
+        <div class="container reassurance-items">
+          <span>Pagamento pela plataforma externa</span>
+          <span>Ingresso enviado pela plataforma de venda</span>
+          <span>Atendimento: {site.links.whatsapp ? <a href={site.links.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp ↗</a> : <strong class="placeholder-label">[número]</strong>}</span>
+        </div>
+      </div>
+
+      <section class="section faq-section" id="duvidas" aria-labelledby="faq-title">
+        <div class="faq-container">
+          <p class="eyebrow coral">Perguntas frequentes</p>
+          <h2 id="faq-title" class="display-heading">Tem alguma dúvida?</h2>
+          <div class="faq-list">
+            {site.faqs.map((faq) => (
+              <details class="faq-item">
+                <summary>{faq.question}<span class="faq-icon" aria-hidden="true"></span></summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="closing-section" aria-labelledby="closing-title">
+        <div class="container closing-inner">
+          <h2 class="display-heading" id="closing-title">A arte está esperando<br />por você</h2>
+          <p>Escolha seu ingresso ou sua turma. Leva menos de dois minutos.</p>
+          <div class="action-row centered">
+            <a href={ticketHref} class="btn btn-dark" {...linkProps(ticketHref)}>Comprar ingresso</a>
+            <a href="#cursos" class="btn btn-outline-light">Ver cursos</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer dark-section">
+      <div class="container footer-inner">
+        <a href="#inicio" class="footer-brand" aria-label="Voltar ao início"><img src="/brand.svg" alt="BIA Beltrão" width="112" height="50" loading="lazy" /></a>
+        <div class="footer-contact">
+          <p class="eyebrow muted">{site.fullName}</p>
+          <p><span class="placeholder-label">{site.visit.address}</span></p>
+          <p>Contato: {site.links.email ? <a href={\`mailto:\${site.links.email}\`}>{site.links.email}</a> : <span class="placeholder-label">[e-mail]</span>}</p>
+          <p>{site.links.instagram ? <a href={site.links.instagram} target="_blank" rel="noopener noreferrer">Instagram ↗</a> : <span class="placeholder-label">[Instagram]</span>} · {site.links.whatsapp ? <a href={site.links.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp ↗</a> : <span class="placeholder-label">[WhatsApp]</span>}</p>
+        </div>
+        <nav class="footer-links" aria-label="Links legais">
+          {site.links.privacy ? <a href={site.links.privacy} {...linkProps(site.links.privacy)}>Política de privacidade</a> : <span>Política de privacidade [pendente]</span>}
+          {site.links.terms ? <a href={site.links.terms} {...linkProps(site.links.terms)}>Termos de compra</a> : <span>Termos de compra [pendente]</span>}
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
