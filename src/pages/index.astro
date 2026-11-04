@@ -10,7 +10,7 @@ const linkProps = (url: string) => external(url) ? { target: '_blank', rel: 'noo
 const metaDescription = site.description;
 // GitHub Pages serves project sites under /BIA-LP/, not at domain root.
 const baseUrl = import.meta.env.BASE_URL;
-const asset = (path: string) => `${baseUrl}${path.replace(/^\\/+/, '')}`;
+const asset = (path: string) => `${baseUrl}${path.startsWith('/') ? path.slice(1) : path}`;
 ---
 
 <!doctype html>
