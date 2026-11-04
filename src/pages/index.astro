@@ -79,7 +79,7 @@ const metaDescription = site.description;
               width="700"
               height="570"
               fetchpriority="high"
-              onerror={\`this.onerror=null;this.src='\${site.heroImage.fallback}'\`}
+              onerror={`this.onerror=null;this.src='${site.heroImage.fallback}'`}
             />
             <span class="accent-block accent-coral" aria-hidden="true"></span>
           </div>
@@ -102,7 +102,7 @@ const metaDescription = site.description;
           <p class="section-intro">Escolha o dia e a quantidade e compre em poucos toques. Seu ingresso será disponibilizado conforme as instruções da plataforma de venda.</p>
           <div class="ticket-grid">
             {site.ticketTypes.map((ticket) => (
-              <article class={\`ticket-card stripe-\${ticket.color}\`}>
+              <article class={`ticket-card stripe-${ticket.color}`}>
                 <h3>{ticket.name}</h3>
                 <p>{ticket.description}</p>
                 {ticket.note && <span class="placeholder-label">{ticket.note}</span>}
@@ -126,7 +126,7 @@ const metaDescription = site.description;
             {site.experiences.map((experience) => (
               <article class="experience-card">
                 <div class="card-kicker">
-                  <span class={\`shape \${experience.shape} bg-\${experience.color}\`} aria-hidden="true"></span>
+                  <span class={`shape ${experience.shape} bg-${experience.color}`} aria-hidden="true"></span>
                   <span class="eyebrow">{experience.name}</span>
                 </div>
                 <h3>{experience.title}</h3>
@@ -151,7 +151,7 @@ const metaDescription = site.description;
               const url = course.url || courseHref;
               return (
                 <article class="course-card">
-                  <span class={\`status status-\${course.statusColor}\`}>{course.status}</span>
+                  <span class={`status status-${course.statusColor}`}>{course.status}</span>
                   <h3><span class="placeholder-label">{course.name}</span></h3>
                   <p class="course-description"><span class="placeholder-label">{course.description}</span></p>
                   <p class="course-details"><span class="placeholder-label">{course.details}</span></p>
@@ -178,7 +178,7 @@ const metaDescription = site.description;
           <ol class="timeline" aria-label="Linha do tempo do instituto">
             {site.history.map((event) => (
               <li class="timeline-item">
-                <span class={\`timeline-dot bg-\${event.color}\`} aria-hidden="true"></span>
+                <span class={`timeline-dot bg-${event.color}`} aria-hidden="true"></span>
                 <div><span class="timeline-year placeholder-label">{event.year}</span><br /><span class="timeline-label placeholder-label">{event.label}</span></div>
               </li>
             ))}
@@ -227,7 +227,7 @@ const metaDescription = site.description;
         <div class="footer-contact">
           <p class="eyebrow muted">{site.fullName}</p>
           <p><span class="placeholder-label">{site.visit.address}</span></p>
-          <p>Contato: {site.links.email ? <a href={\`mailto:\${site.links.email}\`}>{site.links.email}</a> : <span class="placeholder-label">[e-mail]</span>}</p>
+          <p>Contato: {site.links.email ? <a href={`mailto:${site.links.email}`}>{site.links.email}</a> : <span class="placeholder-label">[e-mail]</span>}</p>
           <p>{site.links.instagram ? <a href={site.links.instagram} target="_blank" rel="noopener noreferrer">Instagram ↗</a> : <span class="placeholder-label">[Instagram]</span>} · {site.links.whatsapp ? <a href={site.links.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp ↗</a> : <span class="placeholder-label">[WhatsApp]</span>}</p>
         </div>
         <nav class="footer-links" aria-label="Links legais">
