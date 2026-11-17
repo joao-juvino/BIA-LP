@@ -336,3 +336,251 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .btn, .faq-icon::before, .faq-icon::after { transition: none; }
   .faq-item::details-content { transition: none !important; }
 }
+
+
+/* Ajuste de escala em resolução real: desktop 100% (não usar dimensões miniaturizadas do protótipo). */
+:root { font-size: 16px; }
+.container { width: min(calc(100% - 64px), 1180px); }
+.eyebrow { font-size: 11px; letter-spacing: .27em; }
+.display-heading { font-size: clamp(38px, 4vw, 58px); }
+.btn { min-height: 44px; padding: 0 23px; font-size: 12px; letter-spacing: .10em; font-weight: 600; }
+.action-row { gap: 15px; }
+
+/* Barra superior */
+.header-inner { min-height: 92px; gap: 28px; }
+.brand img { width: 110px; }
+.desktop-nav { gap: clamp(15px, 1.8vw, 32px); }
+.desktop-nav a { font-size: 12px; letter-spacing: .08em; }
+.header-cta { min-height: 43px; padding-inline: 20px; }
+.color-track { height: 5px; }
+
+/* Capa: mantém o enquadramento natural da fotografia e evita deformação. */
+.hero { padding: 60px 0 70px; }
+.hero-grid { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: clamp(35px, 4vw, 75px); }
+.hero-copy .eyebrow { margin-bottom: 18px; font-size: 11px; }
+.hero h1 { font-size: clamp(46px, 4.15vw, 65px); line-height: .98; }
+.hero-description { max-width: 470px; margin: 25px 0 25px; font-size: 18px; line-height: 1.48; }
+.fine-print { font-size: 13px; margin-top: 15px; }
+.hero-art { padding: 15px 17px 15px 0; }
+.hero-photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
+}
+.accent-gold { left: -18px; width: 75px; height: 72px; }
+.accent-coral { width: 54px; height: 62px; }
+
+/* Endereço e horários */
+.visit-strip { padding: 16px 0; }
+.visit-detail { min-height: 84px; padding: 15px 23px; }
+.visit-detail:first-child { padding-left: 0; }
+.visit-detail .eyebrow { font-size: 11px; }
+.visit-detail p { margin-top: 10px; font-size: 14px; line-height: 1.45; }
+
+/* Escala consistente entre as seções */
+.section { padding: 65px 0 72px; }
+.section .eyebrow + .display-heading { margin-top: 14px; }
+.section h2.display-heading { font-size: clamp(41px, 3.75vw, 56px); }
+.section-intro { font-size: 16px; line-height: 1.55; margin: 14px 0 27px; }
+
+/* Ingressos */
+.tickets-section h2.display-heading { font-size: clamp(32px, 2.9vw, 45px); white-space: normal; }
+.ticket-grid { gap: 17px; }
+.ticket-card { min-height: 165px; padding: 23px 20px; border-top-width: 6px; }
+.ticket-card h3 { font-size: 24px; margin-bottom: 10px; }
+.ticket-card p { font-size: 14px; line-height: 1.5; }
+.ticket-marker { width: 77px; height: 15px; margin-top: 7px; }
+.ticket-action { margin-top: 26px; }
+
+/* A visita */
+.experiences-section { padding: 65px 0 72px; }
+.experiences-section h2.display-heading { font-size: clamp(42px, 3.9vw, 58px); }
+.experience-heading { margin-bottom: 30px !important; }
+.experience-grid { gap: 17px; margin-bottom: 26px; }
+.experience-card { min-height: 245px; padding: 26px 23px; }
+.card-kicker { gap: 11px; }
+.card-kicker .eyebrow { font-size: 10px; }
+.shape { width: 24px; height: 24px; }
+.experience-card h3 { font-size: 24px; line-height: 1.08; margin: 24px 0 15px; }
+.experience-card p { font-size: 14px; line-height: 1.5; }
+.reference-note { margin-top: 8px; font-size: 11px; }
+
+/* Cursos */
+.courses-section { padding: 65px 0 72px; }
+.courses-section .container { max-width: 1180px; }
+.courses-intro { margin-bottom: 33px; gap: 32px; }
+.courses-intro p { max-width: 500px; font-size: 16px; line-height: 1.5; margin-bottom: 10px; }
+.course-grid { gap: 24px; }
+.course-card { min-height: 420px; padding: 24px; }
+.status { padding: 8px 13px; font-size: 11px; letter-spacing: .12em; }
+.course-card h3 { font-size: 24px; margin: 17px 0 12px; }
+.course-description { font-size: 14px; line-height: 1.48; text-align: left; margin-bottom: 14px; }
+.course-meta { gap: 7px; }
+.course-meta span { font-size: 12px; padding: 4px 6px; white-space: normal; }
+.course-pricing { margin: 14px 0 16px; gap: 12px; }
+.old-price { font-size: 13px; }
+.course-pricing strong { font-size: 17px; padding: 4px 7px; }
+.course-card .btn { min-height: 43px; font-size: 12px; letter-spacing: .04em; }
+.courses-notice { margin-top: 26px; padding: 20px 22px; font-size: 14px; line-height: 1.5; }
+
+/* Instituto */
+.about-section { padding: 70px 0 75px; }
+.about-grid { grid-template-columns: minmax(0, 1.4fr) minmax(0, .8fr); gap: 75px; }
+.about-copy .eyebrow { margin-bottom: 18px; }
+.about-copy h2 { margin-bottom: 24px; font-size: clamp(42px, 3.9vw, 56px) !important; }
+.about-copy p:not(.eyebrow) { max-width: 650px; font-size: 16px; line-height: 1.65; margin-bottom: 19px; }
+.about-copy .btn { margin-top: 14px; }
+.stat-list { padding: 7px 0; gap: 26px; }
+.stat-item { grid-template-columns: 18px 1fr; gap: 22px; }
+.stat-dot { width: 16px; height: 16px; }
+.stat-item strong { font-size: 36px; }
+.stat-item p { font-size: 16px; line-height: 1.45; max-width: 300px; margin-top: 7px; }
+
+/* FAQ */
+.reassurance-strip { padding: 28px 0 0; }
+.reassurance-items { gap: 15px 29px; font-size: 11px; letter-spacing: .13em; }
+.faq-section { padding: 65px 0 70px; }
+.faq-container { width: min(calc(100% - 64px), 860px); }
+.faq-section h2 { font-size: clamp(43px, 4vw, 58px); margin: 15px 0 21px; }
+.faq-item summary { min-height: 65px; font-size: 16px; line-height: 1.35; }
+.faq-answer p { font-size: 15px; line-height: 1.65; padding: 0 30px 20px 0; }
+.faq-icon { transform: scale(1.35); margin-right: 5px; }
+
+/* Contato e rodapé */
+.closing-section { padding: 70px 0; }
+.closing-grid { width: min(calc(100% - 64px), 1180px); grid-template-columns: minmax(0,1fr) minmax(420px,480px); gap: 70px; }
+.closing-copy .eyebrow { font-size: 13px; margin-bottom: 21px; }
+.closing-copy h2 { font-size: clamp(55px, 5vw, 80px); line-height: .96; }
+.closing-copy > p:last-child { max-width: 510px; font-size: 18px; line-height: 1.5; margin-top: 31px; }
+.contact-form { padding: 29px; min-height: auto; }
+.contact-form label { font-size: 15px; margin-bottom: 9px; }
+.contact-form input, .contact-form select { height: 49px; margin-bottom: 22px; padding: 10px 12px; font-size: 16px; }
+.contact-form .btn { min-height: 49px; margin-top: 8px; font-size: 15px; }
+.form-feedback { font-size: 13px; }
+.site-footer { padding: 65px 0; }
+.footer-inner { grid-template-columns: 120px minmax(0,1fr) auto; gap: 30px; }
+.footer-brand img { width: 120px; }
+.footer-contact p { font-size: 13px; line-height: 1.5; margin-bottom: 7px; }
+.footer-contact p.eyebrow { font-size: 11px; margin-bottom: 13px; }
+.footer-links { grid-column: auto; align-self: center; font-size: 14px; gap: 20px; }
+
+/* Tamanhos intermediários (tablets e notebooks menores). */
+@media (max-width: 1140px) {
+  .container { width: calc(100% - 48px); }
+  .header-inner { min-height: 80px; }
+  .desktop-nav { gap: 15px; }
+  .desktop-nav a { font-size: 11px; }
+  .brand img { width: 94px; }
+  .header-cta { padding-inline: 14px; font-size: 11px; }
+  .hero { padding: 50px 0 58px; }
+  .hero-grid { gap: 32px; }
+  .hero h1 { font-size: clamp(39px, 4.2vw, 56px); }
+  .hero-description { font-size: 16px; }
+  .section { padding: 55px 0 60px; }
+  .ticket-card, .experience-card { padding: 20px 16px; }
+  .ticket-card h3, .experience-card h3 { font-size: 21px; }
+  .ticket-card p, .experience-card p { font-size: 13px; }
+  .course-grid { gap: 16px; }
+  .course-card { padding: 18px; }
+  .course-description { font-size: 13px; }
+  .about-grid { gap: 45px; }
+  .closing-grid { width: calc(100% - 48px); gap: 40px; }
+}
+
+@media (max-width: 850px) {
+  .desktop-nav, .header-cta { display: none; }
+  .mobile-menu { display: block; }
+  .mobile-menu summary {
+    display: flex; flex-direction: column; gap: 6px; padding: 12px;
+    cursor: pointer; list-style: none;
+  }
+  .mobile-menu summary::-webkit-details-marker { display: none; }
+  .mobile-menu summary span { display: block; width: 26px; height: 2px; background: #fff; }
+  .mobile-menu nav {
+    position: absolute; right: 0; top: 100%; width: min(80vw,300px);
+    display: flex; flex-direction: column; padding: 10px;
+    background: #123742; box-shadow: 0 12px 26px #0005;
+  }
+  .mobile-menu nav a { padding: 13px; font-size: 14px; text-decoration: none; border-bottom: 1px solid #ffffff25; }
+  .hero-grid { gap: 20px; }
+  .hero h1 { font-size: clamp(36px, 5vw, 46px); }
+  .hero-description { font-size: 15px; }
+  .ticket-grid, .experience-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .ticket-card, .experience-card { min-height: 190px; }
+  .courses-intro { display: block; }
+  .courses-intro p { margin-top: 19px; }
+  .course-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .course-card { min-height: 410px; }
+  .about-grid { gap: 30px; }
+  .stat-item strong { font-size: 29px; }
+  .stat-item p { font-size: 14px; }
+  .closing-grid { grid-template-columns: minmax(0,1fr) minmax(320px, 1fr); gap: 25px; }
+  .closing-copy h2 { font-size: 55px; }
+  .closing-copy > p:last-child { font-size: 16px; }
+  .footer-inner { grid-template-columns: 95px 1fr; }
+  .footer-brand img { width: 95px; }
+  .footer-links { grid-column: 2; }
+}
+@media (max-width: 690px) {
+  .container, .faq-container { width: calc(100% - 34px); }
+  .header-inner { min-height: 72px; }
+  .brand img { width: 90px; }
+  .hero { padding: 36px 0 46px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 34px; }
+  .hero h1 { font-size: clamp(41px, 9.5vw, 58px); }
+  .hero-description { max-width: 530px; font-size: 16px; }
+  .hero-art { max-width: 100%; margin-left: 15px; }
+  .visit-strip-grid { grid-template-columns: repeat(2, minmax(0,1fr)); row-gap: 0; }
+  .visit-detail { padding: 16px; min-height: 100px; }
+  .visit-detail:nth-child(2) { border-right: 0; }
+  .visit-detail:first-child, .visit-detail:nth-child(3) { padding-left: 0; }
+  .visit-detail p { font-size: 13px; }
+  .section, .experiences-section, .courses-section { padding: 47px 0 53px; }
+  .section h2.display-heading, .experiences-section h2.display-heading { font-size: clamp(38px, 8vw, 50px); }
+  .tickets-section h2.display-heading { font-size: clamp(31px, 6.3vw, 41px); }
+  .section-intro { font-size: 15px; }
+  .ticket-card, .experience-card { min-height: 170px; padding: 20px 16px; }
+  .ticket-card h3, .experience-card h3 { font-size: 22px; }
+  .ticket-card p, .experience-card p { font-size: 13px; }
+  .experience-heading { margin-bottom: 24px !important; }
+  .courses-section .container { max-width: none; }
+  .courses-intro { margin-bottom: 27px; }
+  .course-grid { grid-template-columns: 1fr; }
+  .course-card { min-height: unset; padding: 21px; }
+  .course-card h3 { font-size: 24px; }
+  .course-description { font-size: 15px; }
+  .course-card .btn { min-height: 45px; }
+  .about-grid { grid-template-columns: 1fr; gap: 39px; }
+  .about-copy h2 { font-size: clamp(37px, 8vw, 49px) !important; }
+  .about-copy p:not(.eyebrow) { font-size: 15px; }
+  .stat-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 27px 17px; }
+  .stat-item strong { font-size: 28px; }
+  .stat-item p { font-size: 13px; }
+  .reassurance-items { font-size: 10px; line-height: 1.5; }
+  .faq-section { padding: 50px 0 60px; }
+  .faq-section h2 { font-size: clamp(40px, 9vw, 55px); }
+  .faq-item summary { min-height: 65px; font-size: 15px; }
+  .faq-answer p { font-size: 14px; }
+  .closing-section { padding: 52px 0; }
+  .closing-grid { width: calc(100% - 34px); grid-template-columns: 1fr; gap: 30px; }
+  .closing-copy h2 { font-size: clamp(52px, 10.7vw, 74px); }
+  .closing-copy > p:last-child { font-size: 16px; }
+  .contact-form { padding: 22px; }
+  .site-footer { padding: 48px 0; }
+  .footer-inner { grid-template-columns: 87px 1fr; gap: 17px; }
+  .footer-brand img { width: 87px; }
+  .footer-contact p { font-size: 12px; }
+  .footer-contact p.eyebrow { font-size: 9px; }
+  .footer-links { grid-column: 1 / -1; font-size: 13px; }
+}
+@media (max-width: 385px) {
+  .container, .faq-container { width: calc(100% - 28px); }
+  .ticket-grid, .experience-grid, .stat-list { grid-template-columns: 1fr; }
+  .ticket-card, .experience-card { min-height: auto; }
+  .hero h1 { font-size: 38px; }
+  .btn { font-size: 11px; padding-inline: 13px; }
+  .contact-form input, .contact-form select { font-size: 15px; }
+}
