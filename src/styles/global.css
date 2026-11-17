@@ -584,3 +584,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   .btn { font-size: 11px; padding-inline: 13px; }
   .contact-form input, .contact-form select { font-size: 15px; }
 }
+
+/* Corrigidos com a fotografia original não deformada e marcações do layout. */
+.color-track { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1.3fr .9fr 1.2fr; width: 100%; }
+.hero-art { position: relative; isolation: isolate; padding: 15px 12px 12px 0; }
+.hero-photo { width: 100%; aspect-ratio: auto; height: auto; object-fit: contain; object-position: center; display: block; position: relative; z-index: 1; }
+.accent-gold { top: 0; left: -17px; width: 72px; height: 72px; z-index: 0; }
+.accent-coral { right: 4px; bottom: 5px; width: 45px; height: 66px; z-index: 2; background: var(--coral); clip-path: polygon(70% 0, 100% 0, 100% 100%, 0 100%, 0 80%, 70% 80%); }
+@media (max-width: 690px) {
+  .hero-art { padding: 13px 12px 12px 0; }
+  .accent-gold { width: 54px; height: 54px; left: -12px; }
+  .accent-coral { width: 40px; height: 56px; }
+}

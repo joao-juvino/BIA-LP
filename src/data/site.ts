@@ -8,7 +8,7 @@ export const site = {
   fullName: 'Instituto BIA · Instituto de Artes da Paraíba',
   description: 'O espaço da arte e cultura paraibana. Conheça o acervo, as exposições e os cursos do Instituto BIA.',
   heroImage: {
-    src: '/bia-fachada.webp',
+    src: '/bia-fachada-hd.webp',
     fallback: '/gallery-placeholder.svg',
     alt: 'Fachada do Instituto BIA Beltrão à noite, com obras coloridas e iluminação arquitetônica',
   },

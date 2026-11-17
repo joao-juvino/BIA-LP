@@ -19,7 +19,7 @@ const interestOptions = ['Um curso', 'Ingresso ou visita', 'Evento', 'Visita em 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Instituto BIA Beltrão | O espaço da arte e cultura paraibana" />
     <meta property="og:description" content={site.description} />
-    <meta property="og:image" content={new URL(asset('bia-fachada.webp'), Astro.site || 'https://joao-juvino.github.io').toString()} />
+    <meta property="og:image" content={new URL(asset('bia-fachada-hd.webp'), Astro.site || 'https://joao-juvino.github.io').toString()} />
     <link rel="icon" href={asset('favicon.svg')} type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -53,7 +53,7 @@ const interestOptions = ['Um curso', 'Ingresso ou visita', 'Evento', 'Visita em 
           </nav>
         </details>
       </div>
-      <div class="color-track" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="color-track" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
     </header>
     <main id="conteudo">
       <section class="hero dark-section" aria-labelledby="hero-title">
@@ -72,10 +72,10 @@ const interestOptions = ['Um curso', 'Ingresso ou visita', 'Evento', 'Visita em 
             <span class="accent-block accent-gold" aria-hidden="true"></span>
             <img
               class="hero-photo"
-              src={asset('bia-fachada.webp')}
+              src={asset(site.heroImage.src)}
               alt={site.heroImage.alt}
-              width="650"
-              height="365"
+              width="960"
+              height="539"
               fetchpriority="high"
               onerror={'this.onerror=null;this.src=' + JSON.stringify(asset(site.heroImage.fallback))}
             />
