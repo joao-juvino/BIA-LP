@@ -43,17 +43,17 @@ export const site = {
     {
       status: 'Inscrições abertas', statusColor: 'teal', name: 'Pintura em tela',
       description: 'Descubra o prazer de pintar e explore sua criatividade em nosso curso de Pintura em Tela! Aprenda técnicas, desenvolva suas habilidades artísticas e transforme suas ideias em obras únicas, mesmo que você nunca tenha pintado antes.',
-      teacher: 'Fulano', period: 'Turmas novembro 2026', duration: '20h', oldPrice: 'R$ 150,00', price: 'R$ 140,00', url: '',
+      teacher: 'Fulano', period: 'Turmas novembro 2026', duration: '20h', oldPrice: 'R$ 150,00', price: 'R$ 140,00', url: 'https://sandbox.asaas.com/000/c/odds7wngkv4htqph',
     },
     {
       status: 'Inscrições abertas', statusColor: 'teal', name: 'Cerâmica',
       description: 'Descubra a arte de transformar a argila em peças únicas no nosso curso de Cerâmica! Aprenda técnicas de modelagem, explore sua criatividade e experimente o prazer de criar com as próprias mãos, mesmo sem experiência prévia.',
-      teacher: 'Fulano', period: 'Turmas novembro 2026', duration: '20h', oldPrice: 'R$ 150,00', price: 'R$ 140,00', url: '',
+      teacher: 'Fulano', period: 'Turmas novembro 2026', duration: '20h', oldPrice: 'R$ 150,00', price: 'R$ 140,00', url: 'https://sandbox.asaas.com/000/c/1j94c44kcx2b6ods',
     },
     {
       status: 'Poucas vagas', statusColor: 'gold', name: 'Fotografia',
       description: 'Aprenda a enxergar o mundo por novas perspectivas no nosso curso de Fotografia! Explore técnicas de composição, iluminação e enquadramento para registrar momentos, contar histórias e transformar seu olhar criativo em imagens incríveis.',
-      teacher: 'Fulano', period: 'Turmas novembro 2026', duration: '20h', oldPrice: 'R$ 150,00', price: 'R$ 140,00', url: '',
+      teacher: 'Fulano', period: 'Turmas novembro 2026', duration: '20h', oldPrice: 'R$ 150,00', price: 'R$ 140,00', url: 'https://sandbox.asaas.com/000/c/5zv2du6h1q7jrgcg',
     },
   ],
   statistics: [
