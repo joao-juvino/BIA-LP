@@ -8,7 +8,19 @@ const asset = (file: string) => base + file.replace(/^\//, '');
 const tickets = site.links.tickets || '#contato';
 const courseLink = site.links.courses || '#contato';
 const linkProps = (url: string) => url.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {};
-const interestOptions = ['Um curso', 'Ingresso ou visita', 'Evento', 'Visita em grupo ou escola', 'Outro assunto'];
+const interestOptions = [
+  'Pintura em tela',
+  'Aquarela',
+  'Pintura em azulejo e cerâmica',
+  'Vidro e porcelanato',
+  'Desenho artístico',
+  'Desenho digital',
+  'Fotografia',
+  'Teatro',
+  'Xilogravura',
+  'História da arte',
+  'História da Paraíba',
+];
 ---
 <!doctype html>
 <html lang="pt-BR">
@@ -152,7 +164,7 @@ const interestOptions = ['Um curso', 'Ingresso ou visita', 'Evento', 'Visita em 
                     <span>Professor: {course.teacher}</span><span>{course.period}</span><span>{course.duration}</span>
                   </div>
                   <div class="course-pricing"><span class="old-price">De {course.oldPrice}</span><strong>Por {course.price}</strong></div>
-                  <a href={url} class="btn btn-coral btn-full" data-interest="Um curso" {...linkProps(url)}>Quero me inscrever</a>
+                  <a href={url} class="btn btn-coral btn-full" data-interest={course.name === 'Cerâmica' ? 'Pintura em azulejo e cerâmica' : course.name} {...linkProps(url)}>Quero me inscrever</a>
                 </article>
               );
             })}
@@ -273,7 +285,10 @@ const interestOptions = ['Um curso', 'Ingresso ou visita', 'Evento', 'Visita em 
       const interest = document.getElementById('contact-interest');
       document.querySelectorAll('[data-interest]').forEach(function (link) {
         link.addEventListener('click', function () {
-          if (link.getAttribute('href') === '#contato' && interest) interest.value = link.dataset.interest || '';
+          if (link.getAttribute('href') === '#contato' && interest) {
+            const value = link.dataset.interest || '';
+            interest.value = Array.from(interest.options).some(option => option.value === value) ? value : '';
+          }
         });
       });
       if (form) {
