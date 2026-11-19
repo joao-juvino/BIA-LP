@@ -43,7 +43,7 @@ export const site = {
     {
       status: 'Inscrições abertas', statusColor: 'teal', name: 'Pintura em tela',
       description: 'Descubra o prazer de pintar e explore sua criatividade em nosso curso de Pintura em Tela! Aprenda técnicas, desenvolva suas habilidades artísticas e transforme suas ideias em obras únicas, mesmo que você nunca tenha pintado antes.',
-      teacher: 'Fulano', period: 'Turmas novembro 2026', duration: '20h', oldPrice: 'R$ 150,00', price: 'R$ 140,00', url: 'https://sandbox.asaas.com/000/c/odds7wngkv4htqph',
+      teacher: 'Fulano', period: 'Turmas novembro 2026', duration: '20h', oldPrice: 'R$ 150,00', price: 'R$ 140,00', url: 'https://www.asaas.com/000/c/dh32o5pyy4ejohb6',
     },
     {
       status: 'Inscrições abertas', statusColor: 'teal', name: 'Cerâmica',
