@@ -1,33 +1,19 @@
 ---
 import { site } from '../data/site';
 import '../styles/global.css';
-import '../styles/mobile.css';
 
 const base = import.meta.env.BASE_URL;
 const asset = (file: string) => base + file.replace(/^\//, '');
-const tickets = site.links.tickets || '#contato';
-const courseLink = site.links.courses || '#contato';
-const linkProps = (url: string) => url.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {};
-const interestOptions = [
-  'Pintura em tela',
-  'Aquarela',
-  'Pintura em azulejo e cerâmica',
-  'Vidro e porcelanato',
-  'Desenho artístico',
-  'Desenho digital',
-  'Fotografia',
-  'Teatro',
-  'Xilogravura',
-  'História da arte',
-  'História da Paraíba',
-];
+// Enquanto a bilheteria oficial não estiver configurada, a compra é atendida pelo WhatsApp.
+const tickets = site.links.tickets || site.links.whatsapp;
+const external = { target: '_blank', rel: 'noopener noreferrer' };
 ---
 <!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#092531" />
+    <meta name="theme-color" content="#09222f" />
     <meta name="description" content={site.description} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Instituto BIA Beltrão | O espaço da arte e cultura paraibana" />
@@ -36,176 +22,167 @@ const interestOptions = [
     <link rel="icon" href={asset('favicon.svg')} type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <title>Instituto BIA Beltrão | Arte, exposições, ingressos e cursos</title>
   </head>
   <body>
     <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
     <header class="site-header" id="inicio">
       <div class="container header-inner">
         <a class="brand" href="#inicio" aria-label="Instituto BIA Beltrão, voltar ao início">
-          <img src={asset('brand.svg')} alt="Logomarca oficial do Instituto BIA Beltrão" width="145" height="87" />
+          <img src={asset('brand.svg')} alt="Logomarca do Instituto BIA Beltrão" width="902" height="542" />
         </a>
-        <nav class="desktop-nav" aria-label="Navegação principal">
+        <nav class="main-nav" aria-label="Navegação principal">
           <a href="#ingressos">Ingressos</a>
-          <a href="#visita">A visita</a>
           <a href="#cursos">Cursos</a>
           <a href="#instituto">O instituto</a>
           <a href="#duvidas">Dúvidas</a>
         </nav>
-        <a href={tickets} class="btn btn-coral header-cta" data-interest="Ingresso ou visita" {...linkProps(tickets)}>Comprar ingresso</a>
-        <details class="mobile-menu">
-          <summary aria-label="Abrir menu"><span></span><span></span><span></span></summary>
-          <nav aria-label="Menu mobile">
-            <a href="#ingressos">Ingressos</a>
-            <a href="#visita">A visita</a>
-            <a href="#cursos">Cursos</a>
-            <a href="#instituto">O instituto</a>
-            <a href="#duvidas">Dúvidas</a>
-            <a href="#contato">Contato</a>
-          </nav>
-        </details>
+        <a href={tickets} class="btn btn-coral header-cta" {...external}>Comprar ingresso</a>
       </div>
       <div class="color-track" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
     </header>
+
     <main id="conteudo">
-      <section class="hero dark-section" aria-labelledby="hero-title">
+      <section class="hero" aria-labelledby="hero-title">
         <div class="container hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow muted">Instituto de Artes · Paraíba</p>
-            <h1 id="hero-title" class="display-heading">O espaço da<br /><em>arte e cultura</em><br />paraibana</h1>
-            <p class="hero-description">Um grande acervo de arte do estado, onde quem cria encontra quem admira. Compre seu ingresso ou escolha seu curso.</p>
-            <div class="action-row">
-              <a href={tickets} data-interest="Ingresso ou visita" {...linkProps(tickets)} class="btn btn-coral">Comprar ingresso</a>
-              <a href="#cursos" class="btn btn-outline-light">Ver cursos</a>
+            <p class="eyebrow hero-eyebrow">Instituto de Artes - Paraíba</p>
+            <h1 id="hero-title" class="display">O espaço da<br /><span class="gold">arte e cultura</span><br />paraibana</h1>
+            <p class="hero-description">Um grande acervo de arte do estado, onde quem cria encontra quem admira. Compre seu ingresso ou confira os cursos que serão oferecidos.</p>
+            <div class="hero-actions">
+              <a href={tickets} class="btn btn-coral" {...external}>Comprar ingresso</a>
+              <a href="#cursos" class="btn btn-outline">Ver cursos</a>
             </div>
-            <p class="fine-print">Pagamento por Pix ou cartão</p>
           </div>
           <div class="hero-art">
-            <span class="accent-block accent-gold" aria-hidden="true"></span>
+            <span class="accent accent-gold" aria-hidden="true"></span>
+            <span class="accent accent-coral" aria-hidden="true"></span>
             <img
               class="hero-photo"
               src={asset(site.heroImage.src)}
               alt={site.heroImage.alt}
-              width="960"
-              height="539"
+              width="414"
+              height="298"
               fetchpriority="high"
               onerror={'this.onerror=null;this.src=' + JSON.stringify(asset(site.heroImage.fallback))}
             />
-            <span class="accent-block accent-coral" aria-hidden="true"></span>
           </div>
         </div>
       </section>
 
       <section class="visit-strip" aria-label="Informações de visita">
-        <div class="container visit-strip-grid">
-          <div class="visit-detail"><span class="eyebrow coral">Horários</span><p>{site.visit.hours}</p></div>
-          <div class="visit-detail"><span class="eyebrow coral">Onde</span><p>{site.visit.address}</p></div>
-          <div class="visit-detail"><span class="eyebrow coral">Contato</span><p><a href={'tel:+558332040264'}>{site.visit.phone}</a></p></div>
-          <div class="visit-detail"><span class="eyebrow coral">Como chegar</span><p><a href={site.links.maps} target="_blank" rel="noopener noreferrer">Ver no mapa</a></p></div>
+        <div class="container visit-grid">
+          <div class="visit-item">
+            <p class="eyebrow">Horários</p>
+            <p>Terça a sábado,<br class="mobile-only" /> das 9h às 17h</p>
+          </div>
+          <div class="visit-item">
+            <p class="eyebrow">Onde</p>
+            <p>Rua Vigário Sarlen, 29 - Centro<span class="desktop-only"> Histórico</span>, João Pessoa - PB</p>
+          </div>
+          <div class="visit-item">
+            <p class="eyebrow">Contato</p>
+            <p><a href={site.visit.phoneHref}>{site.visit.phone}</a></p>
+          </div>
+          <div class="visit-item">
+            <p class="eyebrow">Como chegar</p>
+            <p><a class="underline" href={site.links.maps} {...external}>Ver no mapa</a></p>
+          </div>
         </div>
       </section>
 
-      <section class="section tickets-section" id="ingressos" aria-labelledby="tickets-title">
+      <section class="tickets" id="ingressos" aria-labelledby="tickets-title">
         <div class="container">
-          <p class="eyebrow coral">Ingressos</p>
-          <h2 id="tickets-title" class="display-heading">No mês de abertura do BIA, todos pagam meia!</h2>
-          <p class="section-intro">Escolha o dia, a quantidade e garanta sua vaga. Nosso time comercial está disponível para atender você.</p>
+          <p class="eyebrow section-eyebrow">Ingressos</p>
+          <h2 id="tickets-title" class="display">No mês de<br class="mobile-only" /> abertura do<br class="mobile-only" /> BIA, todos<br class="mobile-only" /> pagam meia!</h2>
+          <p class="tickets-intro">Escolha o dia, a quantidade e garanta sua vaga. Nosso time comercial está disponível para atender você.</p>
           <div class="ticket-grid">
             {site.ticketTypes.map(ticket => (
               <article class={'ticket-card stripe-' + ticket.color}>
-                <h3>{ticket.name}</h3>
+                <h3 class="display">{ticket.name}</h3>
                 <p>{ticket.description}</p>
-                {ticket.name === 'Inteira' && <span class="ticket-marker" aria-hidden="true"></span>}
+                {'price' in ticket && <strong class="ticket-price">{ticket.price}</strong>}
               </article>
             ))}
           </div>
-          <a href={tickets} class="btn btn-coral ticket-action" data-interest="Ingresso ou visita" {...linkProps(tickets)}>Comprar ingresso</a>
+          <a href={tickets} class="btn btn-coral section-cta" {...external}>Comprar ingresso</a>
         </div>
       </section>
 
-      <section class="section experiences-section" id="visita" aria-labelledby="experiences-title">
+      <section class="experiences" id="visita" aria-labelledby="experiences-title">
         <div class="container">
-          <p class="eyebrow coral">A visita</p>
-          <h2 id="experiences-title" class="display-heading experience-heading">Uma visita, quatro jeitos<br />de entrar na arte</h2>
+          <p class="eyebrow section-eyebrow">A visita</p>
+          <h2 id="experiences-title" class="display">Uma visita,<br class="mobile-only" /> quatro jeitos<br class="desktop-only" /> de<br class="mobile-only" /> entrar na arte</h2>
           <div class="experience-grid">
             {site.experiences.map(experience => (
               <article class="experience-card">
-                <div class="card-kicker">
+                <div class="experience-kicker">
                   <span class={'shape ' + experience.shape + ' bg-' + experience.color} aria-hidden="true"></span>
                   <span class="eyebrow">{experience.name}</span>
                 </div>
-                <h3>{experience.title}</h3>
+                <h3 class="display">{experience.title.map((line, i) => <>{i > 0 && <br />}{line}</>)}</h3>
                 <p>{experience.description}</p>
-                {'note' in experience && <span class="reference-note">{experience.note}</span>}
               </article>
             ))}
           </div>
-          <a href={tickets} class="btn btn-coral" data-interest="Ingresso ou visita" {...linkProps(tickets)}>Escolher meu ingresso</a>
+          <a href={tickets} class="btn btn-coral section-cta" {...external}>Escolher meu ingresso</a>
         </div>
       </section>
 
-      <section class="section courses-section" id="cursos" aria-labelledby="courses-title">
+      <section class="courses" id="cursos" aria-labelledby="courses-title">
         <div class="container">
-          <p class="eyebrow coral">Cursos</p>
-          <div class="courses-intro">
-            <h2 id="courses-title" class="display-heading">Aprenda arte com<br />quem vive de arte</h2>
-            <p>Cursos do Instituto BIA para quem quer começar, retomar ou aprofundar o olhar. Veja as turmas abertas e garanta a sua vaga.</p>
+          <p class="eyebrow section-eyebrow">Cursos</p>
+          <h2 id="courses-title" class="display">Aprenda arte<br class="mobile-only" /> com<br class="desktop-only" /> quem<br class="mobile-only" /> vive de arte</h2>
+          <p class="courses-intro">Cursos do Instituto Bia para quem quer começar, retomar ou aprofundar o olhar. Veja as turmas abertas e garanta a sua vaga.</p>
+        </div>
+        <div class="carousel" data-carousel>
+          <button class="carousel-arrow prev" type="button" aria-label="Cursos anteriores" aria-controls="course-track" data-dir="-1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6 8.5 12l6 6" /></svg>
+          </button>
+          <div class="course-track" id="course-track" role="region" aria-roledescription="carrossel" aria-label="Cursos oferecidos pelo Instituto BIA" tabindex="0">
+            {site.courses.map(course => (
+              <article class="course-card">
+                <span class="course-tag">Em breve</span>
+                <h3>{course.name}</h3>
+                <p>{course.description}</p>
+                <span class="btn-course" role="note">Turmas em breve</span>
+              </article>
+            ))}
           </div>
-          <div class="course-grid" id="course-carousel" role="region" aria-roledescription="carrossel" aria-label="Cursos oferecidos pelo Instituto BIA. Deslize para os lados para ver todos os cursos." tabindex="0">
-            {site.courses.map(course => {
-              const url = course.url || courseLink;
-              return (
-                <article class="course-card">
-                  <span class={'status status-' + course.statusColor}>{course.status}</span>
-                  <h3>{course.name}</h3>
-                  <p class="course-description">{course.description}</p>
-                  <div class="course-meta">
-                    <span>Professor: {course.teacher}</span><span>{course.period}</span><span>{course.duration}</span>
-                  </div>
-                  <div class="course-pricing"><span class="old-price">De {course.oldPrice}</span><strong>Por {course.price}</strong></div>
-                  <a href={url} class="btn btn-coral btn-full" data-interest={course.name === 'Cerâmica' ? 'Pintura em azulejo e cerâmica' : course.name} {...linkProps(url)}>Quero me inscrever</a>
-                </article>
-              );
-            })}
-          </div>
-          <div class="courses-notice">No momento não há inscrições abertas? Deixe seu e-mail e avisamos antes de todo mundo.</div>
+          <button class="carousel-arrow next" type="button" aria-label="Próximos cursos" aria-controls="course-track" data-dir="1">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 6 6 6-6 6" /></svg>
+          </button>
         </div>
       </section>
 
-      <section class="section about-section dark-section" id="instituto" aria-labelledby="about-title">
+      <section class="about" id="instituto" aria-labelledby="about-title">
         <div class="container about-grid">
           <div class="about-copy">
-            <p class="eyebrow muted">O instituto</p>
-            <h2 id="about-title" class="display-heading">A Paraíba ganhou<br />um instituto de artes</h2>
-            <p>Tudo começou em 2014, com a família Beltrão e o amor pela arte que perpassa gerações. Surgiu uma ideia ousada para valorizar a arte da Paraíba: proporcionar a artistas em ascendência e que possuem legado consolidado uma oportunidade para compartilhar suas artes.</p>
-            <p>A aposta deu certo. Obra a obra, a coleção cresce até se tornar um grande acervo de arte da Paraíba, com mais de mil pinturas, esculturas e peças que carregam a identidade do estado. Em 2023, nasceu oficialmente o Beltrão Instituto de Artes, um espaço de arte e cultura paraibana.<br />Uma paixão desse tamanho pede para ser compartilhada. Por isso o BIA abre suas portas para que cada paraibano e cada visitante possa conhecer a história da Paraíba e se sentir parte dela.</p>
-            <a href={tickets} class="btn btn-coral" data-interest="Ingresso ou visita" {...linkProps(tickets)}>Comprar ingresso</a>
+            <p class="eyebrow about-eyebrow">O instituto</p>
+            <h2 id="about-title" class="display">A Paraíba ganhou<br /> um instituto de<br class="mobile-only" /> artes</h2>
+            <p>Tudo começou em 2014, com a família Beltrão e o amor pela arte que perpassa gerações. Surgiu uma ideia ousada para valorizar a arte da Paraíba: proporcionar a artistas em ascendência que possuem legado consolidado uma oportunidade para compartilhar suas artes.</p>
+            <p>A aposta deu certo. Obra a obra, a coleção cresce até se tornar um grande acervo de arte da Paraíba, com mais de mil pinturas, esculturas e peças que carregam a identidade do estado. Em 2023, nasceu oficialmente o Beltrão Instituto de Artes, um espaço da arte e cultura paraibana.</p>
+            <p>Uma paixão desse tamanho pede para ser compartilhada. Por isso o BIA abre suas portas para que cada paraibano e cada visitante possa conhecer a história da Paraíba e se sentir parte dela.</p>
           </div>
           <ul class="stat-list" aria-label="O Instituto em números">
             {site.statistics.map(stat => (
               <li class="stat-item">
-                <span class={'stat-dot bg-' + stat.color} aria-hidden="true"></span>
-                <div><strong>{stat.value}</strong><p>{stat.label}</p></div>
+                <span class={'stat-square bg-' + stat.color} aria-hidden="true"></span>
+                <strong>{stat.value}</strong>
+                <p>{stat.label}</p>
               </li>
             ))}
           </ul>
-          <a href={tickets} class="btn btn-coral about-mobile-cta" data-interest="Ingresso ou visita" {...linkProps(tickets)}>Comprar ingresso</a>
+          <a href={tickets} class="btn btn-coral about-cta" {...external}>Comprar ingresso</a>
         </div>
       </section>
 
-      <div class="reassurance-strip">
-        <div class="container reassurance-items">
-          <span>Pagamento seguro</span>
-          <span>Ingresso enviado por e-mail na hora</span>
-          <span>Atendimento por WhatsApp: {site.visit.phone}</span>
-        </div>
-      </div>
-
-      <section class="section faq-section" id="duvidas" aria-labelledby="faq-title">
+      <section class="faq" id="duvidas" aria-labelledby="faq-title">
         <div class="faq-container">
-          <p class="eyebrow coral">Perguntas frequentes</p>
-          <h2 id="faq-title" class="display-heading">Tem alguma dúvida?</h2>
+          <p class="eyebrow section-eyebrow">Perguntas frequentes</p>
+          <h2 id="faq-title" class="display">Tem alguma<br class="mobile-only" /> dúvida?</h2>
           <div class="faq-list">
             {site.faqs.map(faq => (
               <details class="faq-item" name="faq">
@@ -217,41 +194,29 @@ const interestOptions = [
         </div>
       </section>
 
-      <section class="closing-section" id="contato" aria-labelledby="closing-title">
-        <div class="container closing-grid">
+      <section class="closing" id="contato" aria-labelledby="closing-title">
+        <div class="closing-grid">
           <div class="closing-copy">
             <p class="eyebrow">Fale com a gente!</p>
-            <h2 class="display-heading" id="closing-title">A arte está<br />esperando<br />por você</h2>
-            <p>Deixe seus dados e conte o que você procura: um curso, um evento ou uma visita. A gente retorna para combinar tudo com você.</p>
+            <h2 id="closing-title" class="display">A arte está<br />esperando<br />por você</h2>
+            <p><a href={tickets} {...external}>Garanta seu ingresso!</a></p>
           </div>
-          <form class="contact-form" id="contact-form" data-email={site.links.email}>
-            <label for="contact-name">Nome:</label>
-            <input id="contact-name" name="nome" type="text" placeholder="Seu nome completo" autocomplete="name" required minlength="2" />
-            <label for="contact-phone">Telefone:</label>
-            <input id="contact-phone" name="telefone" type="tel" placeholder="(00) 0000-0000" autocomplete="tel" required minlength="8" />
-            <label for="contact-email">E-mail</label>
-            <input id="contact-email" name="email" type="email" placeholder="você@email.com" autocomplete="email" required />
-            <label for="contact-interest">Tenho interesse em:</label>
-            <select id="contact-interest" name="interesse" required>
-              <option value="" disabled selected>Selecione uma opção</option>
-              {interestOptions.map(option => <option value={option}>{option}</option>)}
-            </select>
-            <button type="submit" class="btn btn-coral btn-full">Enviar contato</button>
-            <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
-          </form>
+          <img class="closing-photo" src={asset(site.closingImage.src)} alt={site.closingImage.alt} width="441" height="502" loading="lazy" />
         </div>
       </section>
     </main>
-    <footer class="site-footer dark-section">
+
+    <footer class="site-footer">
       <div class="container footer-inner">
         <a class="footer-brand" href="#inicio" aria-label="Voltar ao início">
-          <img src={asset('brand.svg')} alt="Logomarca oficial do Instituto BIA Beltrão" width="190" height="115" loading="lazy" />
+          <img src={asset('brand.svg')} alt="Logomarca do Instituto BIA Beltrão" width="902" height="542" loading="lazy" />
         </a>
         <div class="footer-contact">
-          <p class="eyebrow muted">{site.fullName}</p>
-          <p>{site.visit.address}</p>
-          <p>WhatsApp {site.visit.phone} · E-mail: <a href={'mailto:' + site.links.email}>{site.links.email}</a></p>
-          <p>Instagram: <a href={site.links.instagram} target="_blank" rel="noopener noreferrer">@biainstitutodeartes</a></p>
+          <p class="eyebrow">{site.fullName}</p>
+          <p class="desktop-only">Rua Vigário Sarlen, 29 - Centro Histórico, João Pessoa</p>
+          <p class="mobile-only">Rua Vigário Sarlen, 29.<br />Centro Histórico, João Pessoa / PB.<br />Ao lado da Igreja de São Francisco.</p>
+          <p><a href={site.links.whatsapp} {...external}>WhatsApp {site.visit.phone}</a> -<br class="mobile-only" /> E-mail: <a href={'mailto:' + site.links.email}>{site.links.email}</a></p>
+          <p>Instagram: <a href={site.links.instagram} {...external}>@biainstitutodeartes</a></p>
         </div>
         <nav class="footer-links" aria-label="Informações legais">
           {site.links.privacy ? <a href={site.links.privacy}>Política de privacidade</a> : <span>Política de privacidade</span>}
@@ -259,52 +224,38 @@ const interestOptions = [
         </nav>
       </div>
     </footer>
+
     <script is:inline>
-      const carousel = document.getElementById('course-carousel');
-      if (carousel) {
-        const media = window.matchMedia('(max-width: 690px)');
-        const centerPainting = () => {
-          if (!media.matches) return;
-          const first = carousel.querySelector('.course-card:first-child');
-          if (!first) return;
-          const left = first.offsetLeft - carousel.offsetLeft - (carousel.clientWidth - first.clientWidth) / 2;
-          carousel.scrollLeft = Math.max(0, left);
+      document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
+        var track = carousel.querySelector('.course-track');
+        var buttons = carousel.querySelectorAll('.carousel-arrow');
+        if (!track) return;
+        var step = function () {
+          var card = track.querySelector('.course-card');
+          var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+          return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
         };
-        if (document.readyState === 'complete') requestAnimationFrame(centerPainting);
-        else window.addEventListener('load', () => requestAnimationFrame(centerPainting), { once: true });
-        carousel.addEventListener('keydown', (event) => {
+        var update = function () {
+          var max = track.scrollWidth - track.clientWidth - 2;
+          buttons.forEach(function (button) {
+            var dir = Number(button.dataset.dir);
+            button.disabled = dir < 0 ? track.scrollLeft <= 2 : track.scrollLeft >= max;
+          });
+        };
+        buttons.forEach(function (button) {
+          button.addEventListener('click', function () {
+            track.scrollBy({ left: step() * Number(button.dataset.dir), behavior: 'smooth' });
+          });
+        });
+        track.addEventListener('keydown', function (event) {
           if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
           event.preventDefault();
-          const card = carousel.querySelector('.course-card');
-          if (!card) return;
-          const gap = parseFloat(getComputedStyle(carousel).gap) || 16;
-          carousel.scrollBy({ left: (card.clientWidth + gap) * (event.key === 'ArrowRight' ? 1 : -1), behavior: 'smooth' });
+          track.scrollBy({ left: step() * (event.key === 'ArrowRight' ? 1 : -1), behavior: 'smooth' });
         });
-      }
-      const form = document.getElementById('contact-form');
-      const interest = document.getElementById('contact-interest');
-      document.querySelectorAll('[data-interest]').forEach(function (link) {
-        link.addEventListener('click', function () {
-          if (link.getAttribute('href') === '#contato' && interest) {
-            const value = link.dataset.interest || '';
-            interest.value = Array.from(interest.options).some(option => option.value === value) ? value : '';
-          }
-        });
+        track.addEventListener('scroll', update, { passive: true });
+        window.addEventListener('resize', update);
+        update();
       });
-      if (form) {
-        form.addEventListener('submit', function (event) {
-          event.preventDefault();
-          if (!form.reportValidity()) return;
-          const values = new FormData(form);
-          const name = String(values.get('nome') || '').trim();
-          const phone = String(values.get('telefone') || '').trim();
-          const email = String(values.get('email') || '').trim();
-          const subject = 'Contato pelo site BIA - ' + String(values.get('interesse') || '');
-          const body = ['Nome: ' + name, 'Telefone: ' + phone, 'E-mail: ' + email, 'Interesse: ' + values.get('interesse')].join('\n');
-          document.getElementById('form-feedback').textContent = 'Seu aplicativo de e-mail será aberto para você confirmar o envio da mensagem.';
-          window.location.href = 'mailto:' + encodeURIComponent(form.dataset.email) + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-        });
-      }
     </script>
   </body>
 </html>

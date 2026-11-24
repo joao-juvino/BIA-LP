@@ -23,10 +23,12 @@ O resultado estático é gerado na pasta `dist/`.
 ## Estrutura
 
 - `src/pages/index.astro`: página completa, seções semânticas e FAQ.
-- `src/styles/global.css`: estilos, cores e ajustes responsivos.
+- `src/styles/global.css`: estilos, cores e ajustes responsivos (desktop com as medidas do frame de 1440 px do Figma; mobile proporcional ao frame mobile via `--m`).
 - `src/data/site.ts`: todo o conteúdo editável, URLs de compra e inscrições, horários, preços, cursos, dados de contato e perguntas frequentes.
 - `public/brand.svg`: marca vetorial **provisória** baseada na referência visual.
 - `public/gallery-placeholder.svg`: imagem substituta de galeria ilustrativa.
+- `public/bia-fachada-figma.webp` e `public/arte-esperando.webp`: fotos **provisórias**, recortadas das telas do Figma. Substituir pelas exportações originais em alta resolução (mesmo nome de arquivo).
+- Fontes: Italiana (títulos) e Jost (textos), via Google Fonts.
 - `public/favicon.svg`: ícone vetorial provisório.
 
 ## Importante antes de publicar
