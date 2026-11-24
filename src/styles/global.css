@@ -31,8 +31,9 @@
   -webkit-font-smoothing: antialiased;
 }
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; interpolate-size: allow-keywords; }
-body { margin: 0; min-width: 400px; overflow-x: hidden; }
+html { scroll-behavior: smooth; interpolate-size: allow-keywords; overflow-x: clip; scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }
+body { margin: 0; min-width: 320px; overflow-x: clip; }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; }
 button { font: inherit; }
@@ -401,8 +402,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   .courses-intro { max-width: calc(192 * var(--m)); margin: calc(24 * var(--m)) auto 0; font-size: calc(12.32 * var(--m)); line-height: 1.1; }
   .carousel {
     margin-top: calc(32 * var(--m));
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    grid-template-areas: 'track track track' 'prev dots next';
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'track' 'dots';
     gap: calc(14 * var(--m)) calc(10 * var(--m));
     padding-inline: calc(16 * var(--m));
   }
@@ -411,8 +412,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
     grid-auto-columns: calc(226 * var(--m)); column-gap: calc(10 * var(--m));
     padding-inline: calc(16 * var(--m)); scroll-padding-inline: calc(16 * var(--m)); text-align: left;
   }
-  .carousel-arrow { width: calc(24 * var(--m)); height: calc(24 * var(--m)); }
-  .carousel-arrow svg { width: calc(13 * var(--m)); height: calc(13 * var(--m)); }
+  .carousel-arrow { display: none; }
   .carousel-dots { --dot: calc(5.5 * var(--m)); --slot: calc(9.5 * var(--m)); margin-top: 0; align-self: center; }
   .carousel-hint {
     display: flex; align-items: center; justify-content: center; gap: calc(5 * var(--m));
