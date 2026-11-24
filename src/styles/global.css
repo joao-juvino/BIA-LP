@@ -205,12 +205,20 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 .carousel-arrow svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .carousel-arrow:disabled { opacity: .55; cursor: default; }
-.carousel-dots { grid-area: dots; display: flex; justify-content: center; flex-wrap: wrap; gap: 9px; margin-top: 25px; }
-.carousel-dots button {
-  width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%;
-  background: #d9cdb8; cursor: pointer; transition: background-color .2s ease, width .2s ease;
+.carousel-dots {
+  /* Indicador no estilo do Instagram: 5 bolinhas inteiras + 2 menores de cada lado */
+  --dot: 8px; --slot: 14px;
+  grid-area: dots; justify-self: center; position: relative; overflow: hidden;
+  width: calc(9 * var(--slot)); height: var(--slot); margin-top: 25px;
 }
-.carousel-dots button[aria-current='true'] { width: 25px; border-radius: 5px; background: var(--coral); }
+.carousel-dots-strip { position: absolute; inset: 0; transform: translateX(calc(var(--shift, 0) * var(--slot))); transition: transform .3s ease; }
+.carousel-dots-strip span {
+  position: absolute; top: 50%; left: calc(var(--i) * var(--slot) + (var(--slot) - var(--dot)) / 2);
+  width: var(--dot); height: var(--dot); margin-top: calc(var(--dot) / -2); border-radius: 50%;
+  background: #cdbfa8; transform: scale(var(--s, 1));
+  transition: transform .3s ease, background-color .3s ease;
+}
+.carousel-dots-strip span.is-active { background: var(--coral); }
 .carousel-hint { display: none; }
 
 /* ---------- O instituto ---------- */
@@ -405,9 +413,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   }
   .carousel-arrow { width: calc(24 * var(--m)); height: calc(24 * var(--m)); }
   .carousel-arrow svg { width: calc(13 * var(--m)); height: calc(13 * var(--m)); }
-  .carousel-dots { margin-top: 0; gap: calc(5 * var(--m)); align-self: center; }
-  .carousel-dots button { width: calc(5 * var(--m)); height: calc(5 * var(--m)); }
-  .carousel-dots button[aria-current='true'] { width: calc(15 * var(--m)); }
+  .carousel-dots { --dot: calc(5.5 * var(--m)); --slot: calc(9.5 * var(--m)); margin-top: 0; align-self: center; }
   .carousel-hint {
     display: flex; align-items: center; justify-content: center; gap: calc(5 * var(--m));
     margin-top: calc(12 * var(--m)); font-size: calc(9.35 * var(--m)); color: #6b7a82;
@@ -460,6 +466,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 
 @media (prefers-reduced-motion: reduce) {
   html, .course-track { scroll-behavior: auto; }
-  .btn, .faq-icon::before, .faq-icon::after, .carousel-arrow, .carousel-dots button { transition: none; }
+  .btn, .faq-icon::before, .faq-icon::after, .carousel-arrow, .carousel-dots-strip, .carousel-dots-strip span { transition: none; }
   .faq-item::details-content { transition: none !important; }
 }

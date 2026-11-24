@@ -154,7 +154,7 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
           <button class="carousel-arrow next" type="button" aria-label="Próximos cursos" aria-controls="course-track" data-dir="1">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 6 6 6-6 6" /></svg>
           </button>
-          <div class="carousel-dots" role="group" aria-label="Escolher posição do carrossel" data-dots></div>
+          <div class="carousel-dots" aria-hidden="true" data-dots><div class="carousel-dots-strip"></div></div>
         </div>
         <p class="carousel-hint" aria-hidden="true">Arraste para o lado para ver mais cursos
           <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
@@ -249,18 +249,41 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
         var goTo = function (index) {
           track.scrollTo({ left: Math.min(index * step(), maxScroll()), behavior: 'smooth' });
         };
+        // Bolinhas no estilo do Instagram: quantidade fixa de 5 inteiras; a fileira "anda"
+        // quando a ativa chega na penúltima (ou na segunda, voltando).
+        var VISIBLE = 5;
+        var strip = dotsBox && dotsBox.querySelector('.carousel-dots-strip');
+        var windowStart = 0;
         var buildDots = function () {
-          if (!dotsBox) return;
+          if (!strip) return;
           var total = positions();
-          if (dotsBox.children.length === total) return;
-          dotsBox.innerHTML = '';
+          if (strip.children.length === total) return;
+          strip.innerHTML = '';
           for (var i = 0; i < total; i++) {
-            var dot = document.createElement('button');
-            dot.type = 'button';
-            dot.setAttribute('aria-label', 'Ir para o curso ' + (i + 1));
-            (function (index) { dot.addEventListener('click', function () { goTo(index); }); })(i);
-            dotsBox.appendChild(dot);
+            var dot = document.createElement('span');
+            dot.style.setProperty('--i', i);
+            strip.appendChild(dot);
           }
+          windowStart = 0;
+        };
+        var renderDots = function (index) {
+          if (!strip) return;
+          var total = strip.children.length;
+          var visible = Math.min(VISIBLE, total);
+          if (index > windowStart + visible - 2 && index < total - 1) windowStart = index - (visible - 2);
+          if (index === total - 1) windowStart = total - visible;
+          if (index < windowStart + 1 && index > 0) windowStart = index - 1;
+          if (index === 0) windowStart = 0;
+          windowStart = Math.max(0, Math.min(windowStart, total - visible));
+          // Centraliza a janela de 5 dentro das 9 posições (2 de folga de cada lado).
+          var shift = total <= VISIBLE ? (9 - total) / 2 : 2 - windowStart;
+          strip.style.setProperty('--shift', shift);
+          Array.prototype.forEach.call(strip.children, function (dot, i) {
+            var outside = i < windowStart ? windowStart - i : i - (windowStart + visible - 1);
+            var scale = outside <= 0 ? 1 : outside === 1 ? 0.62 : outside === 2 ? 0.36 : 0;
+            dot.style.setProperty('--s', scale);
+            dot.classList.toggle('is-active', i === index);
+          });
         };
         var update = function () {
           var index = current();
@@ -268,9 +291,7 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
           buttons.forEach(function (button) {
             button.disabled = Number(button.dataset.dir) < 0 ? track.scrollLeft <= 2 : track.scrollLeft >= max;
           });
-          if (dotsBox) Array.prototype.forEach.call(dotsBox.children, function (dot, i) {
-            dot.setAttribute('aria-current', i === index ? 'true' : 'false');
-          });
+          renderDots(index);
         };
         buttons.forEach(function (button) {
           button.addEventListener('click', function () { goTo(current() + Number(button.dataset.dir)); });
