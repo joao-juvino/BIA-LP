@@ -154,7 +154,11 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
           <button class="carousel-arrow next" type="button" aria-label="Próximos cursos" aria-controls="course-track" data-dir="1">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 6 6 6-6 6" /></svg>
           </button>
+          <div class="carousel-dots" role="group" aria-label="Escolher posição do carrossel" data-dots></div>
         </div>
+        <p class="carousel-hint" aria-hidden="true">Arraste para o lado para ver mais cursos
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </p>
       </section>
 
       <section class="about" id="instituto" aria-labelledby="about-title">
@@ -229,31 +233,81 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
       document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
         var track = carousel.querySelector('.course-track');
         var buttons = carousel.querySelectorAll('.carousel-arrow');
+        var dotsBox = carousel.querySelector('[data-dots]');
         if (!track) return;
+        var cards = track.querySelectorAll('.course-card');
         var step = function () {
-          var card = track.querySelector('.course-card');
           var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-          return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
+          return cards.length ? cards[0].getBoundingClientRect().width + gap : track.clientWidth;
+        };
+        var maxScroll = function () { return Math.max(0, track.scrollWidth - track.clientWidth); };
+        var positions = function () { return Math.max(1, Math.round(maxScroll() / step()) + 1); };
+        var current = function () {
+          if (track.scrollLeft >= maxScroll() - 2) return positions() - 1;
+          return Math.round(track.scrollLeft / step());
+        };
+        var goTo = function (index) {
+          track.scrollTo({ left: Math.min(index * step(), maxScroll()), behavior: 'smooth' });
+        };
+        var buildDots = function () {
+          if (!dotsBox) return;
+          var total = positions();
+          if (dotsBox.children.length === total) return;
+          dotsBox.innerHTML = '';
+          for (var i = 0; i < total; i++) {
+            var dot = document.createElement('button');
+            dot.type = 'button';
+            dot.setAttribute('aria-label', 'Ir para o curso ' + (i + 1));
+            (function (index) { dot.addEventListener('click', function () { goTo(index); }); })(i);
+            dotsBox.appendChild(dot);
+          }
         };
         var update = function () {
-          var max = track.scrollWidth - track.clientWidth - 2;
+          var index = current();
+          var max = maxScroll() - 2;
           buttons.forEach(function (button) {
-            var dir = Number(button.dataset.dir);
-            button.disabled = dir < 0 ? track.scrollLeft <= 2 : track.scrollLeft >= max;
+            button.disabled = Number(button.dataset.dir) < 0 ? track.scrollLeft <= 2 : track.scrollLeft >= max;
+          });
+          if (dotsBox) Array.prototype.forEach.call(dotsBox.children, function (dot, i) {
+            dot.setAttribute('aria-current', i === index ? 'true' : 'false');
           });
         };
         buttons.forEach(function (button) {
-          button.addEventListener('click', function () {
-            track.scrollBy({ left: step() * Number(button.dataset.dir), behavior: 'smooth' });
-          });
+          button.addEventListener('click', function () { goTo(current() + Number(button.dataset.dir)); });
         });
         track.addEventListener('keydown', function (event) {
           if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
           event.preventDefault();
-          track.scrollBy({ left: step() * (event.key === 'ArrowRight' ? 1 : -1), behavior: 'smooth' });
+          goTo(current() + (event.key === 'ArrowRight' ? 1 : -1));
         });
+
+        // Arrastar com o mouse no computador (no celular o gesto de deslizar já é nativo).
+        var dragging = false, moved = false, startX = 0, startScroll = 0;
+        track.addEventListener('pointerdown', function (event) {
+          if (event.pointerType !== 'mouse' || event.button !== 0) return;
+          dragging = true; moved = false; startX = event.clientX; startScroll = track.scrollLeft;
+          track.classList.add('is-dragging');
+          track.setPointerCapture(event.pointerId);
+        });
+        track.addEventListener('pointermove', function (event) {
+          if (!dragging) return;
+          var delta = event.clientX - startX;
+          if (Math.abs(delta) > 4) moved = true;
+          track.scrollLeft = startScroll - delta;
+        });
+        var endDrag = function () {
+          if (!dragging) return;
+          dragging = false;
+          track.classList.remove('is-dragging');
+          if (moved) goTo(Math.round(track.scrollLeft / step()));
+        };
+        track.addEventListener('pointerup', endDrag);
+        track.addEventListener('pointercancel', endDrag);
+        track.addEventListener('click', function (event) { if (moved) { event.preventDefault(); moved = false; } }, true);
+
         track.addEventListener('scroll', update, { passive: true });
-        window.addEventListener('resize', update);
+        window.addEventListener('resize', function () { buildDots(); update(); });
+        buildDots();
         update();
       });
     </script>
