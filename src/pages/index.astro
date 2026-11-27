@@ -144,10 +144,12 @@ const external = { target: '_blank', rel: 'noopener noreferrer' };
           <div class="course-track" id="course-track" role="region" aria-roledescription="carrossel" aria-label="Cursos oferecidos pelo Instituto BIA" tabindex="0">
             {site.courses.map(course => (
               <article class="course-card">
-                <span class="course-tag">Em breve</span>
+                <span class="course-tag">{course.url ? 'Inscrições abertas' : 'Em breve'}</span>
                 <h3>{course.name}</h3>
                 <p>{course.description}</p>
-                <span class="btn-course" role="note">Turmas em breve</span>
+                {course.url
+                  ? <a class="btn-course" href={course.url} {...external} aria-label={'Inscreva-se no curso de ' + course.name}>Inscreva-se</a>
+                  : <span class="btn-course" role="note">Turmas em breve</span>}
               </article>
             ))}
           </div>

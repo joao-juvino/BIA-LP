@@ -18,7 +18,8 @@ export const site = {
     alt: 'Duas pessoas sentadas de costas observando uma grande pintura em um museu',
   },
   links: {
-    tickets: '', // Vincular à bilheteria oficial quando disponível (enquanto vazio, os botões abrem o WhatsApp)
+    // Link do evento de visitação no Sympla. Enquanto vazio, os botões de ingresso abrem o WhatsApp.
+    tickets: '',
     maps: 'https://www.google.com/maps/search/?api=1&query=Rua+Vigario+Sarlen+29+Centro+Joao+Pessoa+PB',
     whatsapp: 'https://wa.me/558332040264',
     instagram: 'https://www.instagram.com/biainstitutodeartes/',
@@ -43,49 +44,62 @@ export const site = {
     { name: 'Exposições', title: ['Exposições que', 'mudam'], description: 'Sempre há algo novo em cartaz. Volte quantas vezes quiser.', color: 'coral', shape: 'square' },
     { name: 'Cursos', title: ['Cursos para', 'pôr a mão', 'na arte'], description: 'Aprenda com quem conhece o ofício, no ritmo de quem está começando.', color: 'teal', shape: 'circle' },
   ],
+  // Cursos: cole em `url` o link da turma no Sympla. Com link, o card mostra
+  // "Inscrições abertas" e o botão "Inscreva-se"; sem link, fica "Em breve".
   courses: [
     {
       name: 'Pintura em tela',
+      url: '',
       description: 'Descubra o prazer de pintar e explore sua criatividade em nosso curso de Pintura em Tela! Aprenda técnicas, desenvolva suas habilidades artísticas e transforme suas ideias em obras únicas, mesmo que você nunca tenha pintado antes.',
     },
     {
       name: 'Pintura em azulejo e cerâmica',
+      url: '',
       description: 'Transforme peças de cerâmica ou azulejo em verdadeiras obras de arte! Em nosso curso de Pintura em Azulejo e Cerâmica, você aprenderá técnicas de pintura, combinação de cores e decoração de superfícies, explorando sua criatividade e personalizando peças com seu próprio estilo.',
     },
     {
       name: 'Fotografia',
+      url: '',
       description: 'Aprenda a enxergar o mundo por novas perspectivas no nosso curso de Fotografia! Explore técnicas de composição, iluminação e enquadramento para registrar momentos, contar histórias e transformar seu olhar criativo em imagens incríveis.',
     },
     {
       name: 'Xilogravura',
+      url: '',
       description: 'Descubra a arte da gravura em madeira em nosso curso de Xilogravura! Aprenda técnicas de desenho, entalhe e impressão artesanal, explorando texturas, contrastes e composições enquanto conhece uma importante tradição da cultura popular brasileira.',
     },
     {
       name: 'Desenho artístico',
+      url: '',
       description: 'Desenvolva seu olhar artístico e transforme ideias em desenhos! Em nosso curso de Desenho Artístico, você aprenderá técnicas de traço, proporção, perspectiva, luz e sombra, explorando diferentes formas de expressão e desenvolvendo seu próprio estilo.',
     },
     {
       name: 'Vidro e Porcelanato',
+      url: '',
       description: 'Descubra novas possibilidades artísticas em nosso curso de Pintura em Vidro e Porcelanato! Aprenda técnicas de pintura e decoração, explore diferentes cores e acabamentos e transforme superfícies em peças exclusivas, cheias de personalidade.',
     },
     {
       name: 'Aquarela',
+      url: '',
       description: 'Explore a delicadeza das cores e a fluidez da água em nosso curso de Aquarela! Aprenda técnicas de pintura, transparência e mistura de cores, desenvolvendo sua expressão artística e criando composições únicas, mesmo sem experiência prévia.',
     },
     {
       name: 'História da Paraíba',
+      url: '',
       description: 'Descubra as origens, tradições e acontecimentos que construíram a identidade paraibana! Em nosso curso de História da Paraíba, você conhecerá importantes personagens, acontecimentos históricos e manifestações culturais, explorando a riqueza do patrimônio e da memória do nosso estado.',
     },
     {
       name: 'História da arte',
+      url: '',
       description: 'Viaje por diferentes épocas e descubra como a arte transformou a sociedade ao longo dos séculos! Em nosso curso de História da Arte, você conhecerá importantes movimentos artísticos, artistas e obras, compreendendo seus contextos históricos, culturais e sociais.',
     },
     {
       name: 'Desenho digital',
+      url: '',
       description: 'Transforme sua criatividade em arte digital! Em nosso curso de Desenho Digital, você aprenderá a explorar ferramentas digitais, técnicas de ilustração, composição e colorização, desenvolvendo suas habilidades artísticas e criando ilustrações com seu próprio estilo.',
     },
     {
       name: 'Teatro',
+      url: '',
       description: 'Descubra o poder da expressão e da interpretação em nosso curso de Teatro! Explore técnicas de atuação, improvisação, expressão corporal e vocal, desenvolvendo sua criatividade, autoconfiança e capacidade de comunicação dentro e fora dos palcos.',
     },
   ],

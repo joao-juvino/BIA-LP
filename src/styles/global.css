@@ -187,7 +187,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
 }
 .course-tag {
   display: flex; align-items: center; align-self: flex-start;
-  width: 150px; height: 25px; padding-left: 21px;
+  min-width: 150px; height: 25px; padding: 0 21px; white-space: nowrap;
   background: var(--gold-soft); color: var(--navy);
   font-size: 9.5px; font-weight: 500; letter-spacing: .25em; text-transform: uppercase;
 }
@@ -198,6 +198,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   height: 39px; background: var(--coral); color: #fbe7df;
   font-size: 14px; font-weight: 400; letter-spacing: .02em; text-transform: uppercase;
 }
+a.btn-course { text-decoration: none; transition: background-color .18s ease; }
+a.btn-course:hover { background: var(--coral-dark); }
 .carousel-arrow {
   display: grid; place-items: center; flex: 0 0 auto;
   width: 30px; height: 30px; padding: 0; border: 0; border-radius: 50%;
@@ -420,7 +422,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, [tabindex]:focus-v
   }
   .carousel-hint svg { width: calc(12 * var(--m)); height: calc(12 * var(--m)); fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .course-card { min-height: calc(211 * var(--m)); padding: calc(19 * var(--m)) calc(16 * var(--m)) calc(21 * var(--m)); }
-  .course-tag { width: calc(122 * var(--m)); height: calc(20 * var(--m)); padding-left: calc(11 * var(--m)); font-size: calc(6.93 * var(--m)); }
+  .course-tag { min-width: calc(122 * var(--m)); height: calc(20 * var(--m)); padding: 0 calc(11 * var(--m)); font-size: calc(6.93 * var(--m)); }
   .course-card h3 { margin-top: calc(11 * var(--m)); max-width: calc(170 * var(--m)); font-size: calc(21.12 * var(--m)); line-height: .9; }
   .course-card p { margin-top: calc(5 * var(--m)); margin-bottom: calc(14 * var(--m)); font-size: calc(10.12 * var(--m)); line-height: 1.18; }
   .btn-course { height: calc(31 * var(--m)); font-size: calc(9.9 * var(--m)); }
